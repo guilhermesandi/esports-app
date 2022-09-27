@@ -13,9 +13,13 @@ export const styles = StyleSheet.create({
     marginTop: 74,
     marginBottom: 48,
   },
+  heading: {
+    width: '100%',
+    paddingVertical: 32,
+  },
   button: {
     width: '100%',
-    height: 36,
+    height: 48,
     borderRadius: 6,
     backgroundColor: THEME.COLORS.PRIMARY,
     flexDirection: 'row',

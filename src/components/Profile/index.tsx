@@ -21,11 +21,13 @@ export function Profile() {
       </View>
       <TouchableOpacity
         onPress={signOut}
+        style={styles.button}
       >
         <MaterialIcons
           name="logout"
-          size={25}
+          size={24}
           color={THEME.COLORS.TEXT}
+          style={styles.icon}
         />
       </TouchableOpacity>
     </View>

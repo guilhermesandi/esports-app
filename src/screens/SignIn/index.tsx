@@ -1,7 +1,6 @@
 import { Image, TouchableOpacity, Text, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { GameController } from 'phosphor-react-native';
-import * as AuthSession from 'expo-auth-session';
 
 import logoImg from '../../assets/logo-nlw-esports.png';
 import { THEME } from '../../theme';
@@ -35,7 +34,8 @@ export function SignIn() {
 
         <Heading
           title="Entrar"
-          subtitle="Encontre o seu duo e bora jogar."
+          subtitle="Faça login utilizando sua conta Discord."
+          style={styles.heading}
         />
 
         <TouchableOpacity

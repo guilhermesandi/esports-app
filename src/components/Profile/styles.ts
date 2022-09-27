@@ -24,5 +24,16 @@ export const styles = StyleSheet.create({
     fontFamily: THEME.FONT_FAMILY.BOLD,
     fontSize: THEME.FONT_SIZE.MD,
     marginLeft: 16,
+  },
+  button: {
+    backgroundColor: THEME.COLORS.PRIMARY,
+    width: 42,
+    height: 42,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  icon: {
+    marginLeft: 2,
   }
 });
