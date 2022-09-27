@@ -1,12 +1,16 @@
-import { View, ActivityIndicator } from 'react-native';
+import { View, ColorValue, ActivityIndicator } from 'react-native';
 import { THEME } from '../../theme';
 
 import { styles } from './styles';
 
-export function Loading() {
+interface Props {
+  color?: ColorValue;
+}
+
+export function Loading({ color = THEME.COLORS.PRIMARY }: Props) {
   return (
     <View style={styles.container}>
-      <ActivityIndicator color={THEME.COLORS.PRIMARY} />
+      <ActivityIndicator color={color} />
     </View>
   )
 }

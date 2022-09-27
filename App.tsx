@@ -14,8 +14,10 @@ import { Routes } from './src/routes';
 import { Loading } from './src/components/Loading';
 import { Background } from './src/components/Background';
 
-import './src/services/notificationConfig';
+import { AuthProvider } from './src/hooks/auth';
 import { getPushNotificationToken } from './src/services/getPushNotificationToken';
+
+import './src/services/notificationConfig';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -58,7 +60,9 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      {fontsLoaded ? <Routes /> : <Loading />}
+      <AuthProvider>
+        {fontsLoaded ? <Routes /> : <Loading />}
+      </AuthProvider>
     </Background>
   );
 }
