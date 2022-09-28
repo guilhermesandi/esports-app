@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import { useAuth } from '../../hooks/auth';
@@ -8,7 +8,11 @@ import { THEME } from '../../theme';
 
 import { styles } from './styles';
 
-export function ProfileBar() {
+interface Props {
+  style?: StyleProp<ViewStyle>
+}
+
+export function ProfileBar({ style }: Props) {
   const { user, signOut } = useAuth();
 
   const navigation = useNavigation();
@@ -18,7 +22,7 @@ export function ProfileBar() {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <View style={styles.userContainer}>
         <TouchableOpacity
           onPress={handleProfile}

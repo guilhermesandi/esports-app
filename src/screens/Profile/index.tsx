@@ -9,6 +9,7 @@ import { Background } from '../../components/Background';
 import { ProfileBar } from '../../components/ProfileBar';
 
 import { styles } from './styles';
+import { LoLCard } from '../../components/LoLCard';
 
 interface LoLData {
   accountId: string;
@@ -38,19 +39,21 @@ export function Profile() {
   async function getLoLAccountData() {
     const LoLName = user.connections.filter(connection => connection.type === 'leagueoflegends')[0].name;
 
-    const response = await apiLoL.get(`/summoner/v4/summoners/by-name/${LoLName}?api_key=${process.env.RIOT_API_KEY}`);
-    console.log('response', response.data);
-
-    const profileIconUrl = `https://ddragon.leagueoflegends.com/cdn/12.18.1/img/profileicon/${response.data.profileIconId}.png`
-
-    const lolUserData = {
-      ...response.data,
-      profileIconUrl
+    if (LoLName) {
+      const response = await apiLoL.get(`/summoner/v4/summoners/by-name/${LoLName}?api_key=${process.env.RIOT_API_KEY}`);
+      console.log('response', response.data);
+  
+      const profileIconUrl = `https://ddragon.leagueoflegends.com/cdn/12.18.1/img/profileicon/${response.data.profileIconId}.png`
+  
+      const lolUserData = {
+        ...response.data,
+        profileIconUrl
+      }
+  
+      // https://ddragon.leagueoflegends.com/cdn/12.18.1/img/profileicon/5324.png
+  
+      setLolData(lolUserData);
     }
-
-    // https://ddragon.leagueoflegends.com/cdn/12.18.1/img/profileicon/5324.png
-
-    setLolData(lolUserData);
   }
 
   useEffect(() => {
@@ -60,18 +63,11 @@ export function Profile() {
   return (
     <Background>
       <SafeAreaView style={styles.container}>
-        <ProfileBar />
+        <ProfileBar style={styles.profile} />
 
-        <View style={styles.container}>
-          <View style={styles.userContainer}>
-            <Image
-              source={{ uri: lolData.profileIconUrl }}
-              style={styles.avatar}
-            />
-            <Text style={styles.username}>{lolData.name}</Text>
-            <Text style={styles.username}>{lolData.summonerLevel}</Text>
-          </View>
-        </View>
+        {lolData.name && (
+          <LoLCard bannerUrl={lolData.profileIconUrl} level={lolData.summonerLevel} title={lolData.name} />
+        )}
       </SafeAreaView>
     </Background>
   )
