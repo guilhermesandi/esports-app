@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import logoImg from '../../assets/logo-nlw-esports.png';
 
 import { Background } from '../../components/Background';
-import { Profile } from '../../components/Profile';
+import { ProfileBar } from '../../components/ProfileBar';
 import { GameCard, GameCardProps } from '../../components/GameCard';
 import { Heading } from '../../components/Heading';
 
@@ -30,7 +30,7 @@ export function Home() {
   return (
     <Background>
       <SafeAreaView style={styles.container}>
-        <Profile />
+        <ProfileBar />
 
         <Heading
           title="Encontre seu duo"
